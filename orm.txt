@@ -1,0 +1,60 @@
+class Student(models.Model):
+    name=models.CharField(max_length=100)
+    age=models.IntegerField()
+    gender=models.CharField(max_length=100)
+    department=models.CharField(max_length=100)
+    phone=models.CharField(max_length=100)
+    email=models.CharField(max_length=100)
+    address=models.TextField()
+
+
+
+Student.objects.create(name="Alan",age=23,gender="male",department="bcom",phone=6757678776,email=alan@gmail.com,address="address")
+
+Student.objects.create(name="Emy",age=23,gender="female",department="bsc",phone=567678878776,email="emy@gmail.com",address="address") 
+
+Student.objects.create(name="Abhi",age=22,gender="male",department="bsc",phone=89785645,email="abhi@gmail.com",address="address") 
+
+Student.objects.create(name="Maria",age=21,gender="female",department="bcom",phone=86778898989,email="maria@gmail.com",address="address")  
+
+Student.objects.create(name="Subin",age=24,gender="male",department="bsc",phone=4566778979,email="subin@gmail.com",address="address") 
+
+Student.objects.all()
+
+qs=Student.objects.get(id=2) 
+
+qs=Student.objects.get(id=4) 
+
+qs=Student.objects.filter(department="bsc")
+
+qs=Student.objects.filter(gender="male")
+
+qs=Student.objects.filter(age__lt=23)
+
+qs=Student.objects.filter(age__gt=22)
+
+qs=Student.objects.exclude(gender="male")
+
+qs=Student.objects.exclude(department="bcom")
+
+Student.objects.filter(id=3).update(age=23,department="bcom")
+
+Student.objects.get(id=5).delete()
+
+qs=Student.objects.all().order_by("-age")
+
+qs=Student.objects.all().order_by("age")
+
+qs=Student.objects.filter(name__startswith="a")
+
+qs=Student.objects.all().values("department")
+
+qs=Student.objects.all().values("department").distinct()
+
+qs=Student.objects.all().values("department").aggregate(Max("age"))
+
+qs=Student.objects.all().values("department").aggregate(Min("age"))
+
+qs=Student.objects.all().values("department").aggregate(Sum("age"))
+
+
